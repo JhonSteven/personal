@@ -24,6 +24,12 @@ window.axios = axios;
 axios.defaults.baseURL = window.location.origin.replace(":8080", ":8000") + '/api/';
 
 /*** FILTROS */
+Vue.filter('uppercase', function(val) {
+    if (val) {
+        return val.toUpperCase();
+    }
+    return val;
+})
 Vue.filter('formatDate', function(val, formato = null) {
     if (!val) {
         return null;
@@ -91,7 +97,9 @@ new Vue({
                 total: 0,
                 actual: 0,
                 cancelar: false
-            }
+            },
+            pauseExecution: false,
+            stopExecution: false
         }
     },
     computed: {
@@ -133,7 +141,7 @@ new Vue({
                     this.loading = false;
                     if (response.data.etiquetas) {
                         this.resultados.data.push({ url: this.urls[position], data: response.data.etiquetas, time: response.data.time });
-                        if (position < this.urls.length) {
+                        if (position < this.urls.length && !this.pauseExecution && !this.stopExecution) {
                             this.getDataURL(position + 1);
                         }
                     }
@@ -147,6 +155,36 @@ new Vue({
                     }
                 });
 
+        },
+        pause() {
+            this.pauseExecution = true;
+            this.stopExecution = false;
+        },
+        play() {
+            this.pauseExecution = false;
+            this.stopExecution = false;
+            this.getDataURL(this.progress.actual - 1);
+        },
+        stop() {
+            this.stopExecution = true;
+            this.pauseExecution = false;
+            this.progress.total = this.progress.actual;
+        },
+        cancel() {
+            this.stopExecution = false;
+            this.pauseExecution = false;
+            this.urls = [];
+            this.resultados = {
+                termino: '',
+                country: '',
+                data: []
+            };
+            this.loading = false;
+            this.progress = {
+                total: 0,
+                actual: 0,
+                cancelar: false
+            }
         }
     }
 })

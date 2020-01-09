@@ -59,6 +59,22 @@ class SeotagsController extends Controller
         }
     }
 
+    public function getUrlParsed($url)
+    {
+        $parsed_url = parse_url($url);
+        $scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
+        $host     = isset($parsed_url['host']) ? $parsed_url['host'] : '';
+        $port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
+        $user     = isset($parsed_url['user']) ? $parsed_url['user'] : '';
+        $pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : '';
+        $pass     = ($user || $pass) ? "$pass@" : '';
+        $path     = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+        $query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
+        $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
+        $urlFinal = "$scheme$user$pass$host$port$path$query$fragment";
+        return urldecode($urlFinal);
+    }
+
     public function getExtensionCountry($country)
     {
         if($country=='us')
@@ -109,9 +125,9 @@ class SeotagsController extends Controller
             if (!strpos($href[0], 'google.com') && !strpos($href[0], 'youtube') && strpos($href[0], '/url?q=')!==false && strtolower($node->text())!=strtolower('Iniciar Sesión')) {
                 $textBefore = substr($href[0],7);
                 $texto = substr($textBefore,0,strpos($textBefore, "&sa"));
-                if(!in_array($texto,$urls))
+                if(!in_array($this->getUrlParsed($texto),$urls))
                 {
-                    $urls[] = $this->convert_text($texto);
+                    $urls[] = $this->getUrlParsed($texto);
                 }
                 // $urls[] = substr($href[0],7);
                 // $urls[] = $node->text();
@@ -183,6 +199,7 @@ class SeotagsController extends Controller
 
                 }
             }
+            $data['path'] = parse_url(urldecode($r->url))['path'];
             $executionEndTime = microtime(true);
 
             return response()->json(['etiquetas' => $data,'time' => $executionEndTime - $executionStartTime]);

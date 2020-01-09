@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>SEO TAGS</title>
+        <title>PARRATAGS</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
@@ -66,6 +66,10 @@
             }
             .d-none-partial{
                 display: none;
+            }
+            .icon-play
+            {
+                font-size: 2rem !important;
             }
         </style>
     </head>
@@ -140,20 +144,27 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="text-center d-none-partial"> --}}
                 <div class="text-center d-none-partial" v-if="loading">
-                    <span v-if="urls.length>0"> Obteniendo etiquetas en @{{urls[progress.actual-1]}}...</span>
-                    <span v-if="urls.length==0"> Obteniendo SERP's...</span>
+                    <div>
+                        <span v-if="urls.length>0"> Obteniendo etiquetas en @{{urls[progress.actual-1]}}...</span>
+                        <span v-if="urls.length==0"> Obteniendo SERP's...</span>
+                    </div>
+                </div>
+                <div class="text-center  d-none-partial" v-if="(pauseExecution || loading) && urls.length>0">
+                    <a v-on:click="pause" class="pointer text-primary icon-play" v-if="!pauseExecution"><i class="text-primary fa fa-pause-circle"></i></a>
+                    <a v-on:click="play" class="pointer text-success icon-play" v-if="pauseExecution"><i class="text-success fa fa-play-circle"></i></a>
+                    <a v-on:click="stop" class="pointer text-warning icon-play ml-3"><i class="text-warning fa fa-stop-circle"></i></a>
+                    <a v-on:click="cancel" class="pointer text-danger icon-play ml-3"><i class="text-danger fa fa-times-circle"></i></a>
                 </div>
             </div>
-            <div class="progress d-none-partial">
+            <div class="progress d-none-partial" v-if="barProgress<100">
                 <div class="progress-bar" v-bind:class="{'progress-bar-animated progress-bar-striped':progress.actual<progress.total}" role="progressbar" v-bind:aria-valuenow="barProgress" aria-valuemin="0" aria-valuemax="progress.total" v-bind:style="'width:'+barProgress+'%'">
                     <span v-if="barProgress">@{{barProgress}}%</span>
                 </div>
             </div>
             <resultados class="d-none-partial" v-bind:resultados="resultados" v-bind:loading="loading" v-bind:urls="urls"></resultados>
         </div>
-
-
 
         {{-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -1,51 +1,97 @@
 <template>
     <div>
-        <div class="pb-2">
-            <h3>TITLE</h3>
-            {{dato.data['title'] || 'No tiene title.'}}
-        </div>
-        <div class="pb-2">
-            <h3>DESCRIPTION</h3>
-            {{dato.data['description'] || 'No tiene description.'}}
-        </div>
-        <div class="pb-2">
-            <h3>KEYWORDS</h3>
-            {{dato.data['keywords'] || 'No tiene keywords.'}}
-        </div>
-        <div class="pb-2">
-            <h3>H1</h3>
-            <div>
-                <div v-if="dato.data['h1']">
-                    <span v-for="(h1tag,index) in dato.data['h1']" :key="index">- {{h1tag}}<br v-if="index<dato.data['h1'].length-1"></span>
-                </div>
-                <span v-else>No tiene h1</span>
-            </div>
-        </div>
-        <div class="pb-2">
-            <h3>H2</h3>
-            <div v-if="dato.data['h2']">
-                <span v-for="(h2tag,index) in dato.data['h2']" :key="index">- {{h2tag}}<br v-if="index<dato.data['h2'].length-1"></span>
-            </div>
-            <span v-else>No tiene h2</span>
-        </div>
-        <div class="pb-2">
-            <h3>H3</h3>
-            <div v-if="dato.data['h3']">
-                <span v-for="(h3tag,index) in dato.data['h3']" :key="index">- {{h3tag}}<br v-if="index<dato.data['h3'].length-1"></span>
-            </div>
-            <span v-else>No tiene h3</span>
-        </div>
-        <div class="pb-2">
-            <h3>ALT DE IMÁGENES</h3>
-            <div v-if="dato.data['imgAlt']">
-                <span v-for="(imgAlttag,index) in dato.data['imgAlt']" :key="index">- {{imgAlttag}}<br v-if="index<dato.data['imgAlt'].length-1"></span>
-            </div>
-            <span v-else>No tiene imágenes con alt</span>
+        <div class="pb-2 table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="width-tag" v-if="pantallaGrande">Etiqueta</th>
+                        <th v-if="pantallaGrande">Contenido</th>
+                        <th v-if="!pantallaGrande">Etiquetas de la URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr :class="{'bg-gris':key % 2}" v-for="(tag,key) in tags" :key="key">
+                        <td class="width-tag" v-if="pantallaGrande">{{tagName(tag)}}</td>
+                        <td>
+                            <div v-if="!pantallaGrande" class="bold">{{tagName(tag)}}</div>
+                            <div v-if="!Array.isArray(dato.data[tag])">
+                                {{dato.data[tag] || 'No tiene h1'}}
+                            </div>
+                            <div v-if="Array.isArray(dato.data[tag])">
+                                <span v-for="(tagContent,index) in dato.data[tag]" :key="index">- {{tagContent}}<br v-if="index<dato.data[tag].length-1"></span>
+                                <span v-if="dato.data[tag].length==0">No tiene</span>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
 <script>
 export default {
-    props:['dato']
+    props:['dato','tags'],
+    computed:
+    {
+        pantallaGrande()
+        {
+            return this.$mq=='lg' || this.$mq=='xl'
+        }
+    },
+    methods: {
+        tagName(tag)
+        {
+            if(tag=='imgAlt')
+            {
+                return 'Alt de imágenes'
+            }
+            if(tag=='path')
+            {
+                return 'Path de URL'
+            }
+            return tag
+        },
+    },
 }
 </script>
+<style scoped>
+.bg-gris{
+    background: #eee;
+}
+.width-tag
+{
+    font-weight: bold;
+    width:12rem !important;
+    max-width:12rem !important;
+    min-width:12rem !important;
+}
+.max-width-url
+{
+    width:20rem !important;
+    min-width:20rem !important;
+    max-width:20rem !important;
+    overflow-wrap:break-word;
+    word-wrap: break-word;
+}
+.break-word{
+    overflow-wrap:break-word;
+    word-wrap: break-word;
+}
+tr td{
+    padding:0.5rem;
+}
+.badge-gris{
+    background: #e0e0e0;
+    padding: 0.15rem;
+    border-radius:0.15rem;
+}
+a{
+    overflow-wrap:break-word !important;
+    word-wrap: break-word;
+}
+table {
+    table-layout: fixed;
+}
+
+</style>
