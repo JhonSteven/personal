@@ -83,11 +83,6 @@ class SeotagsController extends Controller
 
     public function getUrls(Request $r)
     {
-    }
-
-
-    public function getTags(Request $r)
-    {
         $dataValidate = [
     		"termino" => "required|min:1",
     		"country" => "required|in:".implode( ",", array_keys($this->paises)),
@@ -96,29 +91,56 @@ class SeotagsController extends Controller
         $validator = Validator::make($r->all(),$dataValidate);
 
         if ($validator->fails()) {
-            return back();
+            return response()->json(['errors' => 'Ha ocurrido un error.']);
         }
         $crawler = Goutte::request('GET', 'https://www.google.'.($this->getExtensionCountry($r->country)).'/search?gl='.$r->country.($r->country=='us' ? '&hl=en&pws=0&gws_rd=cr' : '').'&q='.$r->termino);
         $urls = [];
+        // $totalResultados = '';
+        // $crawler->filter('#resultStats')->each(function ($node) {
+        //     if($node->html())
+        //     {
+        //         $totalResultados = $node->html();
+        //     }
+        // });
+        // $totalResultados = $crawler->filter('#resultStats')->html();
 
         $crawler->filter('a')->each(function ($node) use (&$urls) {
             $href = $node->extract(array('href'));
             if (!strpos($href[0], 'google.com') && !strpos($href[0], 'youtube') && strpos($href[0], '/url?q=')!==false && strtolower($node->text())!=strtolower('Iniciar Sesión')) {
                 $textBefore = substr($href[0],7);
                 $texto = substr($textBefore,0,strpos($textBefore, "&sa"));
-                $urls[] = $this->convert_text($texto);
+                if(!in_array($texto,$urls))
+                {
+                    $urls[] = $this->convert_text($texto);
+                }
                 // $urls[] = substr($href[0],7);
                 // $urls[] = $node->text();
             }
         });
 
+        return response()->json(['urls'=>$urls]);
+        // return response()->json(['urls'=>$urls,'total' => $totalResultados]);
+    }
+
+
+    public function getTags(Request $r)
+    {
+        $dataValidate = [
+    		"url" => "required|url",
+        ];
+        $validator = Validator::make($r->all(),$dataValidate);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => 'Ha ocurrido un error.']);
+        }
+
+        $url = $r->url;
         $tags = ['title','description','keywords','h1','h2','h3','h4','imgAlt'];
         $datos = [];
 
-        foreach($urls as $keyU => $url)
-        {
-            $data = ['url'=>$url];
+            $data = [];
 
+            $executionStartTime = microtime(true);
             $crawlerUrl = Goutte::request('GET', $url);
 
             foreach($tags as $tag)
@@ -161,8 +183,9 @@ class SeotagsController extends Controller
 
                 }
             }
-            array_push($datos,$data);
-        }
-        return view('home')->with(['datos' => $datos,'encontrado' =>true,'busqueda' =>$r->termino,'paises'=>$this->paises,'countrySelected'=>$this->paises[$r->country]]);
+            $executionEndTime = microtime(true);
+
+            return response()->json(['etiquetas' => $data,'time' => $executionEndTime - $executionStartTime]);
+            // return view('home')->with(['datos' => $datos,'encontrado' =>true,'busqueda' =>$r->termino,'paises'=>$this->paises,'countrySelected'=>$this->paises[$r->country]]);
     }
 }
