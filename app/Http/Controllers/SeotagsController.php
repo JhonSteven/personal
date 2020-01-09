@@ -10,6 +10,17 @@ use DB;
 
 class SeotagsController extends Controller
 {
+    private $paises = [
+        'co' => 'Colombia',
+        'es' => 'España',
+        'mx' => 'México',
+        'us' => 'Estados Unidos',
+        'ar' => 'Argentina',
+        'pe' => 'Perú',
+        'cl' => 'Chile',
+        'ec' => 'Ecuador',
+    ];
+
     function convert_text($text) {
 
         $t = $text;
@@ -48,11 +59,38 @@ class SeotagsController extends Controller
         }
     }
 
+    public function getExtensionCountry($country)
+    {
+        if($country=='us')
+        {
+            return 'com';
+        }
+        if($country=='es')
+        {
+            return 'es';
+        }
+        if($country=='cl')
+        {
+            return 'cl';
+        }
+        return 'com.'.$country;
+    }
+
+    public function getPageSEOTags()
+    {
+        return view('home')->with(['paises'=> $this->paises]);
+    }
+
+    public function getUrls(Request $r)
+    {
+    }
+
 
     public function getTags(Request $r)
     {
         $dataValidate = [
     		"termino" => "required|min:1",
+    		"country" => "required|in:".implode( ",", array_keys($this->paises)),
         ];
 
         $validator = Validator::make($r->all(),$dataValidate);
@@ -60,8 +98,7 @@ class SeotagsController extends Controller
         if ($validator->fails()) {
             return back();
         }
-
-        $crawler = Goutte::request('GET', 'https://www.google.com.co/search?q='.$r->termino);
+        $crawler = Goutte::request('GET', 'https://www.google.'.($this->getExtensionCountry($r->country)).'/search?gl='.$r->country.($r->country=='us' ? '&hl=en&pws=0&gws_rd=cr' : '').'&q='.$r->termino);
         $urls = [];
 
         $crawler->filter('a')->each(function ($node) use (&$urls) {
@@ -126,6 +163,6 @@ class SeotagsController extends Controller
             }
             array_push($datos,$data);
         }
-        return view('home')->with(['datos' => $datos,'encontrado' =>true,'busqueda' =>$r->termino]);
+        return view('home')->with(['datos' => $datos,'encontrado' =>true,'busqueda' =>$r->termino,'paises'=>$this->paises,'countrySelected'=>$this->paises[$r->country]]);
     }
 }

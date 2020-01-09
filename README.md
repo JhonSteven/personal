@@ -2,9 +2,9 @@
 
 _Este es mi sitio web personal, donde presento dos herramientas, mi blog y portafolio_
 
-## HERRAMIENTAS DESARROLLADAS 🚀
+## Herramientas desarrolladas 🚀
 
-_En la experiencia nos fue necesario el uso de herramientas fáciles SEO._
+_En la experiencia nos fue necesario el uso de herramientas fáciles SEO, para optimizar la carga de nuestros sitios webs._
 
 Mira **www.parraweb.com** para conocer el proyecto.
 
@@ -33,9 +33,9 @@ _Tengo conocimientos en_
 * Te Invito una cerveza 🍺 o un café ☕ y hablamos de tu proyecto a desarrollar. 
 * www.parraweb.com 🤓.
 
-## Equipo de Laboratorio Web www.laboratorioweb.com.co 🎁
+### Equipo de Laboratorio Web www.laboratorioweb.com.co 🎁
 
 * Gracias a José Duran y su equipo por compartir su conocimiento en SEO, pues soy desarrollador más no experto en SEO, sin ellos no hubiese sido posible.
 
 ---
-⌨️ con ❤️ por [JhonStevenParraPeña](https://github.com/JhonSteven) 😊
+⌨️ con ❤️ por [JhonStevenParraPeña](https://github.com/JhonSteven)

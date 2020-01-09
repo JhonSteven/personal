@@ -109,7 +109,7 @@
                     <div class="content py-2">
                         <h1 class="text-center mt-0 bold">PARRATAGS</h1>
 
-                        <p class="text-center">Herramienta para análisis de etiquetas de la competencia, según el término de búsqueda.<br>https://www.google.XX/search?gl=XX&lr=lang_XX&hl=en&q=cars</p>
+                        <p class="text-center">Herramienta para análisis de etiquetas de la competencia, según el término de búsqueda.</p>
                         <form method="post" action="/">
                             {{csrf_field()}}
                             <div class="row">
@@ -118,15 +118,10 @@
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-3 pb-2">
                                     <div class="form-group mb-0">
-                                        <select class="form-control">
-                                            <option value="co">Colombia</option>
-                                            <option value="es">España</option>
-                                            <option value="mx">México</option>
-                                            <option value="us">Estados Unidos</option>
-                                            <option value="ar">Argentina</option>
-                                            <option value="pe">Perú</option>
-                                            <option value="cl">Chile</option>
-                                            <option value="ec">Ecuador</option>
+                                        <select class="form-control" name="country">
+                                            @foreach ($paises as $key => $pais)
+                                            <option value="{{$key}}">{{$pais}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -141,7 +136,7 @@
         </div>
         @if(isset($encontrado))
             <div class="text-center py-4">
-                <h2>RESULTADOS PARA <b>{{$busqueda}}</b></h2>
+                <h2>RESULTADOS PARA <b>{{$busqueda}}</b> en <b>{{$countrySelected}}</b></h2>
             </div>
             @if(!empty($datos))
             <div class="bg-white py-4">

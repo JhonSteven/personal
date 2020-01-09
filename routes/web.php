@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/', 'WebController@getHome');
+Route::get('/', 'SeotagsController@getPageSEOTags');
 Route::post('/', 'SeotagsController@getTags');
