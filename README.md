@@ -21,9 +21,9 @@ _También es posible subir una o varias imágenes y hacer el proceso manual_
 
 ## Construido con 🛠️
 
-* [Laravel](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Vue.js](https://maven.apache.org/) - Manejador de dependencias
-* [Bootstrap 4](https://rometools.github.io/rome/) - Usado para generar RSS
+* [Laravel](https://laravel.com/) - Framework PHP Backend
+* [Vue.js](https://vuejs.org/) - Framework Javascript para Frontend
+* [Bootstrap 4](https://getbootstrap.com/) - Librería CSS
 
 ## Soy Jhon Stiven Parra Peña - FullStack Developer ✒️
 
