@@ -109,6 +109,7 @@ new Vue({
     },
     methods: {
         getURLs() {
+            this.cancel();
             if (this.search.termino.length == 0) {
                 alert('El término a buscar está vacío.');
             } else {

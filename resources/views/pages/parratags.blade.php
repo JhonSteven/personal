@@ -41,7 +41,7 @@
                 <span v-if="urls.length==0"> Obteniendo SERP's...</span>
             </div>
         </div>
-        <div class="text-center  d-none-partial" v-if="(pauseExecution || loading) && urls.length>0">
+        <div class="text-center  d-none-partial" v-if="(pauseExecution || loading) && urls.length>0 && !stopExecution">
             <a v-on:click="pause" class="pointer text-primary icon-play" v-if="!pauseExecution && loading"><i class="text-primary fa fa-pause-circle"></i></a>
             <a v-on:click="play" class="pointer text-success icon-play" v-if="pauseExecution && !loading"><i class="text-success fa fa-play-circle"></i></a>
             <a v-on:click="stop" class="pointer text-warning icon-play ml-3"><i class="text-warning fa fa-stop-circle"></i></a>

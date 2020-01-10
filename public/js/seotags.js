@@ -102793,6 +102793,8 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     getURLs: function getURLs() {
       var _this = this;
 
+      this.cancel();
+
       if (this.search.termino.length == 0) {
         alert('El término a buscar está vacío.');
       } else {

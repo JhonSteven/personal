@@ -1,8 +1,15 @@
 /node_modules
 /public/hot
 /public/storage
+/public/img
 /storage/*.key
 /vendor
+*.zip
+*.rar
+*.jpg
+*.jpeg
+*.png
+*.svg
 .env
 .env.backup
 .phpunit.result.cache

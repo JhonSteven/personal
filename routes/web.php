@@ -11,8 +11,8 @@
 |
 */
 /**************  WEB   *************************/
-Route::get('/', 'WebController@getHome');
+Route::get('/', 'WebController@getHome')->name('home');
 
 /**************  PARRATAGS   *************************/
-Route::get('/herramienta-seo-gratis', 'SeotagsController@getPageSEOTags')->name('parratags');;
+Route::get('/herramienta-seo-gratis', 'SeotagsController@getPageSEOTags')->name('parratags');
 Route::post('/parratags', 'SeotagsController@getTags');
