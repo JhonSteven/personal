@@ -2,7 +2,9 @@
     <div  v-if="resultados.country">
         <div class="container">
             <div class="text-center py-4">
-                <h2 class="my-0">{{loading ? 'Buscando el término ' : 'Resultados encontrados de'}} <b>{{resultados.termino}}</b> en <b>{{countrySelected}}</b> {{loading ? '...' : ''}}</h2>
+                <h2 class="my-0">
+                    {{loading ? 'Buscando el término ' : 'Resultados encontrados de'}} <b>{{resultados.termino}}</b> en <b>{{countrySelected}}</b> {{loading ? '...' : ''}}  <a @click="$emit('cancel')" class="btn btn-sm text-danger btn-outline-danger ml-3" v-if="resultados.data.length>0"><i class="fa fa-times-circle"></i> Cancelar</a>
+                </h2>
             </div>
             <div class="row pt-2 pb-4" v-if="resultados.data.length>0">
                 <div class="col-6">
@@ -28,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="col-2 col-md-1 text-right">
-                                <i v-if="!loading" class="fa" :class="show==key ? 'fa-minus' : 'fa-plus'"></i>
+                                <i v-if="!loading" class="fa font-2" :class="show==key ? 'fa-minus' : 'fa-plus'"></i>
                             </div>
                         </div>
                     </h2>
@@ -108,5 +110,12 @@ h2
 {
     font-size: 1.25rem;
     color:#717171;
+}
+.font-2
+{
+    font-size: 2rem;
+}
+.btn-outline-danger:hover{
+    color:white !important
 }
 </style>

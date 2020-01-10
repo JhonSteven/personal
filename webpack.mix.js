@@ -12,4 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/seotags/main.js', 'public/js/seotags.js')
-    .sass('resources/sass/app.scss', 'public/css');
+    // .sass('resources/sass/app.scss', 'public/css')
+    .stylus('resources/css/estilos.styl', 'public/css/estilos.css');

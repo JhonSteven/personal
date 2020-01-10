@@ -141,13 +141,16 @@ new Vue({
                     this.loading = false;
                     if (response.data.etiquetas) {
                         this.resultados.data.push({ url: this.urls[position], data: response.data.etiquetas, time: response.data.time });
-                        if (position < this.urls.length && !this.pauseExecution && !this.stopExecution) {
-                            this.getDataURL(position + 1);
-                        }
+                        // if (position < this.urls.length && !this.pauseExecution && !this.stopExecution) {
+                        //     this.getDataURL(position + 1);
+                        // }
                     }
                 })
                 .catch(r => this.loading = false)
                 .finally(r => {
+                    if (position < this.urls.length && !this.pauseExecution && !this.stopExecution) {
+                        this.getDataURL(position + 1);
+                    }
                     if (this.progress.actual < this.progress.total) {
                         this.progress.actual++
                     } else {

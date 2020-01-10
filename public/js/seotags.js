@@ -2082,6 +2082,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35824,7 +35826,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nh2[data-v-024e7694]\n{\n    font-size:1.5rem;\n    margin-bottom:0;\n}\n.time[data-v-024e7694]\n{\n    font-size: 1rem;\n    font-weight: bold;\n}\n.break-word[data-v-024e7694]{\n    overflow-wrap:break-word;\n    word-wrap: break-word;\n}\nh2[data-v-024e7694]\n{\n    position: relative;\n}\n.float-right[data-v-024e7694]\n{\n    position: absolute;\n    top:1rem;\n    right: 0.5rem;\n}\n.title-small[data-v-024e7694]\n{\n    font-size: 1.25rem;\n    color:#717171;\n}\n", ""]);
+exports.push([module.i, "\nh2[data-v-024e7694]\n{\n    font-size:1.5rem;\n    margin-bottom:0;\n}\n.time[data-v-024e7694]\n{\n    font-size: 1rem;\n    font-weight: bold;\n}\n.break-word[data-v-024e7694]{\n    overflow-wrap:break-word;\n    word-wrap: break-word;\n}\nh2[data-v-024e7694]\n{\n    position: relative;\n}\n.float-right[data-v-024e7694]\n{\n    position: absolute;\n    top:1rem;\n    right: 0.5rem;\n}\n.title-small[data-v-024e7694]\n{\n    font-size: 1.25rem;\n    color:#717171;\n}\n.font-2[data-v-024e7694]\n{\n    font-size: 2rem;\n}\n.btn-outline-danger[data-v-024e7694]:hover{\n    color:white !important\n}\n", ""]);
 
 // exports
 
@@ -89406,16 +89408,36 @@ var render = function() {
           _c("div", { staticClass: "text-center py-4" }, [
             _c("h2", { staticClass: "my-0" }, [
               _vm._v(
-                _vm._s(
-                  _vm.loading
-                    ? "Buscando el término "
-                    : "Resultados encontrados de"
-                ) + " "
+                "\n                " +
+                  _vm._s(
+                    _vm.loading
+                      ? "Buscando el término "
+                      : "Resultados encontrados de"
+                  ) +
+                  " "
               ),
               _c("b", [_vm._v(_vm._s(_vm.resultados.termino))]),
               _vm._v(" en "),
               _c("b", [_vm._v(_vm._s(_vm.countrySelected))]),
-              _vm._v(" " + _vm._s(_vm.loading ? "..." : ""))
+              _vm._v(" " + _vm._s(_vm.loading ? "..." : "") + "  "),
+              _vm.resultados.data.length > 0
+                ? _c(
+                    "a",
+                    {
+                      staticClass:
+                        "btn btn-sm text-danger btn-outline-danger ml-3",
+                      on: {
+                        click: function($event) {
+                          return _vm.$emit("cancel")
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-times-circle" }),
+                      _vm._v(" Cancelar")
+                    ]
+                  )
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -89555,7 +89577,7 @@ var render = function() {
                               [
                                 !_vm.loading
                                   ? _c("i", {
-                                      staticClass: "fa",
+                                      staticClass: "fa font-2",
                                       class:
                                         _vm.show == key ? "fa-minus" : "fa-plus"
                                     })
@@ -102257,6 +102279,17 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/css/estilos.styl":
+/*!************************************!*\
+  !*** ./resources/css/estilos.styl ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -102805,15 +102838,18 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
             url: _this2.urls[position],
             data: response.data.etiquetas,
             time: response.data.time
-          });
+          }); // if (position < this.urls.length && !this.pauseExecution && !this.stopExecution) {
+          //     this.getDataURL(position + 1);
+          // }
 
-          if (position < _this2.urls.length && !_this2.pauseExecution && !_this2.stopExecution) {
-            _this2.getDataURL(position + 1);
-          }
         }
       })["catch"](function (r) {
         return _this2.loading = false;
       })["finally"](function (r) {
+        if (position < _this2.urls.length && !_this2.pauseExecution && !_this2.stopExecution) {
+          _this2.getDataURL(position + 1);
+        }
+
         if (_this2.progress.actual < _this2.progress.total) {
           _this2.progress.actual++;
         } else {
@@ -102880,26 +102916,15 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!**********************************************************************!*\
-  !*** multi ./resources/js/seotags/main.js ./resources/sass/app.scss ***!
-  \**********************************************************************/
+/*!*************************************************************************!*\
+  !*** multi ./resources/js/seotags/main.js ./resources/css/estilos.styl ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! c:\xampp\htdocs\archivos\msi-7\parraweb\resources\js\seotags\main.js */"./resources/js/seotags/main.js");
-module.exports = __webpack_require__(/*! c:\xampp\htdocs\archivos\msi-7\parraweb\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! c:\xampp\htdocs\archivos\msi-7\parraweb\resources\css\estilos.styl */"./resources/css/estilos.styl");
 
 
 /***/ })

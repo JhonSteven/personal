@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/**************  WEB   *************************/
+Route::get('/', 'WebController@getHome');
 
-Route::get('/', 'SeotagsController@getPageSEOTags');
-Route::post('/', 'SeotagsController@getTags');
+/**************  PARRATAGS   *************************/
+Route::get('/herramienta-seo-gratis', 'SeotagsController@getPageSEOTags')->name('parratags');;
+Route::post('/parratags', 'SeotagsController@getTags');

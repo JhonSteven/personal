@@ -94,7 +94,7 @@ class SeotagsController extends Controller
 
     public function getPageSEOTags()
     {
-        return view('home')->with(['paises'=> $this->paises]);
+        return view('pages.parratags')->with(['paises'=> $this->paises]);
     }
 
     public function getUrls(Request $r)
@@ -203,6 +203,6 @@ class SeotagsController extends Controller
             $executionEndTime = microtime(true);
 
             return response()->json(['etiquetas' => $data,'time' => $executionEndTime - $executionStartTime]);
-            // return view('home')->with(['datos' => $datos,'encontrado' =>true,'busqueda' =>$r->termino,'paises'=>$this->paises,'countrySelected'=>$this->paises[$r->country]]);
+            // return view('pages.parratags')->with(['datos' => $datos,'encontrado' =>true,'busqueda' =>$r->termino,'paises'=>$this->paises,'countrySelected'=>$this->paises[$r->country]]);
     }
 }
