@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <h2 class="text-success bold my-0 pointer" @click="$emit('showIndex',tag)">{{tagName  | uppercase}} <i v-if="!loading" class="fa float-right" :class="show==tag ? 'fa-minus' : 'fa-plus'"></i></h2>
+        <h2 class="text-success bold my-0" :class="loading ? '' : 'pointer'" @click="loading ? null : $emit('showIndex',tag)">{{tagName  | uppercase}} <i v-if="!loading" class="fa float-right" :class="show==tag ? 'fa-minus' : 'fa-plus'"></i></h2>
         <hr>
         <div class="pb-2 table-responsive animated fadeInDown" v-show="show==tag || loading">
             <table class="table">

@@ -15,4 +15,7 @@ Route::get('/', 'WebController@getHome')->name('home');
 
 /**************  PARRATAGS   *************************/
 Route::get('/herramienta-seo-gratis', 'SeotagsController@getPageSEOTags')->name('parratags');
+Route::get('parratags',function(){
+    return redirect()->route('parratags');
+});
 Route::post('/parratags', 'SeotagsController@getTags');

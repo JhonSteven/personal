@@ -19,7 +19,7 @@
         <div class="container">
             <template v-if="tipo=='serp'">
                 <div class="mb-4" v-for="(url,key) in urls" :key="key">
-                    <h2 class="text-success break-word bold pointer" @click="showIndex(key)">
+                    <h2 class="text-success break-word bold" :class="loading ? '' : 'pointer'" @click="loading ? null : showIndex(key)">
                         <div class="row align-items-center">
                             <div class="col-10 col-md-11">
                                 <div class="break-word">
@@ -56,7 +56,7 @@ export default {
     data()
     {
         return {
-            tags:['path','title','description','h1','h2','h3','imgAlt','keywords'],
+            tags:['title','path','description','h1','h2','h3','imgAlt','keywords'],
             tipo:'etiqueta-seo',
             show:0
         }

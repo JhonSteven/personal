@@ -49,10 +49,10 @@
                 <div class="col-12 col-md-6 col-lg-6">
                     <h2 class="bold">Servicios</h2>
                     <h3 class="mt-0 mb-1">Desarrollador Web Freelance</h3>
+                    <h3 class="mt-0 mb-1">Optimización y mejora de sitios web</h3>
                     <h3 class="mt-0 mb-1">Administrador de Sitios Webs</h3>
                     <h3 class="mt-0 mb-1">Creatividad y planeación en ejecución de proyectos web</h3>
                     <h3 class="mt-0 mb-1">Asesoría Web</h3>
-                    <h3 class="mt-0 mb-1">Optimización de sitios web</h3>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6">
                     <h2 class="bold">Educación</h2>
@@ -67,19 +67,21 @@
     <hr class="my-0" id="portafolio">
     <div class="servicios py-4 bg-gris" id="portafolio-content">
         <div class="container">
-            <h2 class="bold">Portafolio</h2>
-            <p>Algunos de los proyectos más destacados que he realizado o acompañado.</p>
-            <div class="buttons-portafolio">
-                <a onclick="mostrar('all')" id="all" class="btn btn-dark mb-2">Todos</a>
-                <a onclick="mostrar('emprendimientos')" id="emprendimientos" class="btn btn-outline-dark mb-2">Emprendimientos</a>
-                <a onclick="mostrar('corporativas')" id="corporativas" class="btn btn-outline-dark mb-2">Páginas Corporativas</a>
-                <a onclick="mostrar('tiendas')" id="tiendas" class="btn btn-outline-dark mb-2">Tiendas online</a>
-                <a onclick="mostrar('appweb')" id="appweb" class="btn btn-outline-dark mb-2">Aplicaciones Web</a>
-                <a onclick="mostrar('appmovil')" id="appmovil" class="btn btn-outline-dark mb-2">Aplicaciones Móviles</a>
-                <a onclick="mostrar('pwa')" id="pwa" class="btn btn-outline-dark mb-2">PWA</a>
-                <a onclick="mostrar('otros')" id="otros" class="btn btn-outline-dark mb-2">Otros</a>
+            <div class="px-3">
+                <h2 class="bold">Portafolio</h2>
+                <p>Algunos de los proyectos más destacados que he realizado o acompañado.</p>
+                <div class="buttons-portafolio">
+                    <a onclick="mostrar('all')" id="all" class="btn btn-dark mb-2">Todos</a>
+                    <a onclick="mostrar('emprendimientos')" id="emprendimientos" class="btn btn-outline-dark mb-2">Emprendimientos</a>
+                    <a onclick="mostrar('corporativas')" id="corporativas" class="btn btn-outline-dark mb-2">Páginas Corporativas</a>
+                    <a onclick="mostrar('tiendas')" id="tiendas" class="btn btn-outline-dark mb-2">Tiendas online</a>
+                    <a onclick="mostrar('appweb')" id="appweb" class="btn btn-outline-dark mb-2">Aplicaciones Web</a>
+                    <a onclick="mostrar('appmovil')" id="appmovil" class="btn btn-outline-dark mb-2">Aplicaciones Móviles</a>
+                    <a onclick="mostrar('pwa')" id="pwa" class="btn btn-outline-dark mb-2">PWA</a>
+                    <a onclick="mostrar('otros')" id="otros" class="btn btn-outline-dark mb-2">Otros</a>
+                </div>
             </div>
-            <div class="row pt-4">
+            <div class="row pt-4 px-1">
                 <a class="col-12 col-md-4 col-lg-3 box-portafolio emprendimientos tiendas" href="#!">
                     <div class="bg-white">
                         <figure class="img-portafolio">
@@ -340,7 +342,7 @@
                         </div>
                     </div>
                 </a>
-                <a class="col-12 col-md-4 col-lg-3 box-portafolio appweb" href="#!">
+                <a class="col-12 col-md-4 col-lg-3 box-portafolio appweb" href="{{URL::to('/herramienta-seo-gratis')}}">
                     <div class="bg-white">
                         <figure class="img-portafolio">
                             <img src="{{URL::asset('img/portafolio/parratags.jpg')}}" alt="">
@@ -383,7 +385,79 @@
             </div>
         </div>
     </div>
-
+    @if(false)
+    <div class="banner resenas py-4">
+        <div class="container pb-4 pt-2">
+            <h2 class="mt-0 text-white text-center bold pb-3">Reseñas y logros</h2>
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3 box-img-jhon text-center">
+                    <div class="card px-2">
+                        <div class="text-center">
+                            <img class="img-resena" src="{{URL::asset('img/jhon.png')}}" alt="">
+                        </div>
+                        <h4 class="my-0  bold py-2">Jose Durán</h4>
+                        <div class="">www.laboratorioweb.com.co</div>
+                        <p class=""><i>Completos profesionales, siempre atentos a cualquier requerimiento y lo mas importante el aumento de ventas con mi sitio web.</i></p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 box-img-jhon text-center">
+                    <div class="card px-2">
+                        <div class="text-center">
+                            <img class="img-resena" src="{{URL::asset('img/jhon.png')}}" alt="">
+                        </div>
+                        <h4 class="my-0  bold py-2">Nelson Moreno</h4>
+                        <div class="">www.oscfondesarrollo.com</div>
+                        <p class=""><i>Desde que trabajamos con Jhon, hemos podido tener a todos nuestros asociados atentos a nuestros anuncios, todos los requerimientos y desarrollos que hemos solicitado, siempre han sido posibles.</i></p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 box-img-jhon text-center">
+                    <div class="card px-2">
+                        <div class="text-center">
+                            <img class="img-resena" src="{{URL::asset('img/jhon.png')}}" alt="">
+                        </div>
+                        <h4 class="my-0  bold py-2">Frank Rey</h4>
+                        <div class="">www.lashstudio.com.co</div>
+                        <p class=""><i>Completos profesionales, siempre atentos a cualquier requerimiento y lo más importante el aumento de ventas con mi sitio web.</i></p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 box-img-jhon text-center">
+                    <div class="card px-2">
+                        <div class="text-center">
+                            <img class="img-resena" src="{{URL::asset('img/jhon.png')}}" alt="">
+                        </div>
+                        <h4 class="my-0  bold py-2">Diego Orejanera</h4>
+                        <div class="">www.riegoplast.com</div>
+                        <p class=""><i>Tenía dudas de realizar el sitio web, con su recomendación y explicación de que era un nicho poco explorado, nos dijo que íbamos a lograr ventas rápido, y efectivamente fue así, el sitio web se pagó solo a los 3 meses de haberlo lanzado.</i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    <hr class="my-0">
+    <div class="servicios otras-experiencias py-4">
+        <div class="container">
+                <div class="text-center px-3">
+                    <h2 class="bold">Otras experiencias</h2>
+                    <p class="text-center">Me gusta estar rodeado del ecosistema emprendedor y tecnológico.</p>
+                    <h3 class="mt-0 mb-1">Asistente Campus Party 2019</h3>
+                    <h3 class="mt-0 mb-1">Asistente Startup Weekend 2017</h3>
+                    <h3 class="mt-0 mb-1">Colaborador proyecto Mercampo.co en convocatoria del estado EMPRENDE CON DATOS</h3>
+                    <h3 class="mt-0 mb-1">Emprendedor Descubrimientos de Negocios del Ministerio de Tecnología Apps.co</h3>
+                    <h3 class="mt-0 mb-1">Emprendedor Aldea INNPULSA</h3>
+                </div>
+                <div class="pt-4 px-3">
+                    <div id="columns">
+                        <div class="pin"><img src="{{URL::asset('img/campus-party-1.jpg')}}" alt=""></div>
+                        <div class="pin"><img src="{{URL::asset('img/campus-party-2.jpg')}}" alt=""></div>
+                        <div class="pin"><img src="{{URL::asset('img/startup-weekend.jpg')}}" alt=""></div>
+                        <div class="pin"><img src="{{URL::asset('img/babymar.jpg')}}" alt=""></div>
+                        <div class="pin"><img src="{{URL::asset('img/frontend-developer.jpg')}}" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @section('scripts')

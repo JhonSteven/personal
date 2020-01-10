@@ -2094,7 +2094,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['resultados', 'loading', 'urls'],
   data: function data() {
     return {
-      tags: ['path', 'title', 'description', 'h1', 'h2', 'h3', 'imgAlt', 'keywords'],
+      tags: ['title', 'path', 'description', 'h1', 'h2', 'h3', 'imgAlt', 'keywords'],
       tipo: 'etiqueta-seo',
       show: 0
     };
@@ -89513,10 +89513,11 @@ var render = function() {
                       _c(
                         "h2",
                         {
-                          staticClass: "text-success break-word bold pointer",
+                          staticClass: "text-success break-word bold",
+                          class: _vm.loading ? "" : "pointer",
                           on: {
                             click: function($event) {
-                              return _vm.showIndex(key)
+                              _vm.loading ? null : _vm.showIndex(key)
                             }
                           }
                         },
@@ -89703,10 +89704,11 @@ var render = function() {
     _c(
       "h2",
       {
-        staticClass: "text-success bold my-0 pointer",
+        staticClass: "text-success bold my-0",
+        class: _vm.loading ? "" : "pointer",
         on: {
           click: function($event) {
-            return _vm.$emit("showIndex", _vm.tag)
+            _vm.loading ? null : _vm.$emit("showIndex", _vm.tag)
           }
         }
       },
